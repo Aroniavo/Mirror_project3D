@@ -7,6 +7,7 @@ const port = process.env.PORT || 4000;
 const sequelize = require("./middleware/dbConnection");
 const userRoutes = require("./routes/UserRoute");
 const conferenceRoutes = require("./routes/ConferenceRoute")
+const entretienRoutes=require("./routes/EntretienRoute")
 const errorHandler = require("./middleware/errorHandler");
 const { User, Conference } = require("./models/RelationDB");
 
@@ -26,7 +27,7 @@ app.use("/api/auth", userRoutes);
 
 // Conference routes
 app.use("/api/conference", conferenceRoutes)
-app.use("/api/entretien")
+app.use("/api/entretien",entretienRoutes)
 // Error handler middleware (doit être après les routes)
 app.use(errorHandler);
 
