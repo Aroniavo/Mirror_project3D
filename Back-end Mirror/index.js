@@ -26,7 +26,7 @@ app.use("/api/auth", userRoutes);
 
 // Conference routes
 app.use("/api/conference", conferenceRoutes)
-
+app.use("/api/entretien")
 // Error handler middleware (doit être après les routes)
 app.use(errorHandler);
 
