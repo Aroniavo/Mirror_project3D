@@ -32,6 +32,14 @@ class ApiClient {
   resetRequest(payload) { return this.request('/auth/reset/request', { method: 'POST', body: payload }) }
   resetConfirm(payload) { return this.request('/auth/reset/confirm', { method: 'POST', body: payload }) }
   me() { return this.request('/auth/me', { auth: true }) }
+
+  // Conférences
+  getConferences() { return this.request('/conference/allConference', { auth: true }) }
+  createConference(payload) { return this.request('/conference/createConf', { method: 'POST', body: payload, auth: true }) }
+  
+  // Entretiens (placeholder pour future implémentation)
+  getInterviews() { return this.request('/interviews', { auth: true }) }
+  createInterview(payload) { return this.request('/interviews', { method: 'POST', body: payload, auth: true }) }
 }
 
 export const api = new ApiClient()

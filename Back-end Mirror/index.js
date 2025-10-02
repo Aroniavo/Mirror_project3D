@@ -23,7 +23,9 @@ app.get("/", (req, res) => res.send("Hello World!"));
 app.get("/api/health", (req, res) => res.json({ message: "Backend Mirror3D fonctionne !" }));
 
 app.use("/api/auth", userRoutes);
-app.use("/api/conference",conferenceRoutes)
+
+// Conference routes
+app.use("/api/conference", conferenceRoutes)
 
 // Error handler middleware (doit être après les routes)
 app.use(errorHandler);

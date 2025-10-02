@@ -102,6 +102,11 @@ npm run dev
 - ✅ Gestion d'erreurs
 - ✅ Base de données PostgreSQL avec Sequelize
 - ✅ Interface React moderne
+- ✅ **Dashboard Entreprise avec sidebar**
+- ✅ **Gestion des conférences (CRUD)**
+- ✅ **DataTable avec Tailwind CSS**
+- ✅ **Génération automatique de liens Jitsi Meet**
+- ✅ **Modal de création de conférence**
 
 ## Structure des dossiers
 ```

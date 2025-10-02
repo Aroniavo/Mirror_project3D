@@ -11,14 +11,15 @@ async function getAllConf(req, res, next) {
   try {
     const user = req.user;
 
-    if (user.role == "candidat") {
-      res.status(403).json({
-        message: "acces interdit",
+    if (user.role === "candidat") {
+      return res.status(403).json({
+        message: "Accès interdit",
       });
     }
 
+    const allConferences = await getAllConference();
     res.status(200).json({
-      conf: allconf,
+      conferences: allConferences,
     });
   } catch (error) {
     next(error);
@@ -27,26 +28,32 @@ async function getAllConf(req, res, next) {
 
 async function createConf(req, res, next) {
   try {
-    if (req.user.role == "candidat") {
-     return res.status(404).json({
-        message : "autorisation non permis"
+    if (req.user.role === "candidat") {
+     return res.status(403).json({
+        message: "Autorisation non accordée"
       })
     }
-    const code = nanoid.nanoid(4);
-      const lien = "https://meet.jit.si/conf-" + uuid();
-      const id_user = req.user.id;
+    
+    // Générer un lien unique pour la conférence
+    const lien = "https://meet.jit.si/conf-" + uuid();
+    const id_user = req.user.id;
 
-      const data = {
-        ...req.body,
-        lien_conference: lien,
-        id_user: id_user,
-      };
+    const data = {
+      ...req.body,
+      lien_conference: lien,
+      id_user: id_user,
+    };
 
-      const newConf = await createConference(data);
-      res.status(200).json({
-        message: "conference ajoutée avec succés",
-        lien: newConf.lien_conference,
-      });
+    const newConf = await createConference(data);
+    res.status(201).json({
+      message: "Conférence créée avec succès",
+      conference: {
+        id_conference: newConf.id_conference,
+        name_company: newConf.name_company,
+        date_conference: newConf.date_conference,
+        lien_conference: newConf.lien_conference
+      }
+    });
   } catch (error) {
     next(error);
   }
