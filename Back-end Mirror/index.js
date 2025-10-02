@@ -1,20 +1,28 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
-const sequelize = require("./middleware/dbConnection"); // ← tu importes juste
+const sequelize = require("./middleware/dbConnection");
 const userRoutes = require("./routes/UserRoute");
 const errorHandler = require("./middleware/errorHandler");
 
 // middlewares
+app.use(cors({
+  origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
-app.use(errorHandler);
 
 // routes
 app.get("/", (req, res) => res.send("Hello World!"));
+app.get("/api/health", (req, res) => res.json({ message: "Backend Mirror3D fonctionne !" }));
 
-app.use("/users", userRoutes);
+app.use("/api/auth", userRoutes);
+
+// Error handler middleware (doit être après les routes)
+app.use(errorHandler);
 
 // Démarrage du serveur
 app.listen(port, () => console.log(`🚀 Serveur lancé sur le port ${port}`));
