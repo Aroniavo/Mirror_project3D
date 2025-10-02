@@ -21,10 +21,6 @@ const Conference = sequelize.define("Conference", {
     type : DataTypes.STRING,
     allowNull:false,
   },
-  code_conference : {
-    type : DataTypes.STRING,
-    allowNull:false,
-  },
   id_user : {
     type : DataTypes.INTEGER,
     allowNull : false,

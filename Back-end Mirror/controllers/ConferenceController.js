@@ -39,7 +39,6 @@ async function createConf(req, res, next) {
       const data = {
         ...req.body,
         lien_conference: lien,
-        code_conference: code,
         id_user: id_user,
       };
 
@@ -47,7 +46,6 @@ async function createConf(req, res, next) {
       res.status(200).json({
         message: "conference ajoutée avec succés",
         lien: newConf.lien_conference,
-        code: newConf.code_conference,
       });
   } catch (error) {
     next(error);
