@@ -42,6 +42,7 @@ async function createEntrt(req, res, next) {
       ...req.body,
       lien_elien_entretiennt: lien,
       id_user: id_user,
+      code_acces:code
     };
 
     const newEnt = await createEntretienService(data);
@@ -51,7 +52,8 @@ async function createEntrt(req, res, next) {
         id_conference: newEnt.id_entretien,
         name_company: newEnt.name_company,
         date_entretien: newEnt.date_entretien,
-        lien_entretien: newEnt.lien_entretien
+        lien_entretien: newEnt.lien_entretien,
+        code_acces : newEnt.code_acces
       }
     });
   } catch (error) {
