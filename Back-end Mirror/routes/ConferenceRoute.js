@@ -9,4 +9,6 @@ router.get('/allConference', authenticateToken, getAllConf)
 // POST /api/conferences - Créer une nouvelle conférence
 router.post('/createConf', authenticateToken, createConf)
 
+
+
 module.exports = router;
