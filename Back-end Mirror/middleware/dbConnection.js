@@ -18,15 +18,4 @@ const sequelize = process.env.DATABASE_URL
       }
     );
 
-async function testConnection() {
-  try {
-    await sequelize.authenticate();
-    console.log("✅ Connecté à PostgreSQL !");
-  } catch (error) {
-    console.error("❌ Erreur de connexion :", error);
-  }
-}
-
-testConnection();
-
 module.exports = sequelize;

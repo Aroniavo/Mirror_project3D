@@ -9,7 +9,6 @@ const userRoutes = require("./routes/UserRoute");
 const conferenceRoutes = require("./routes/ConferenceRoute");
 const entretienRoutes = require("./routes/EntretienRoute");
 const errorHandler = require("./middleware/errorHandler");
-const { User, Conference } = require("./models/RelationDB");
 
 // middlewares
 app.use(
@@ -28,10 +27,9 @@ app.get("/api/health", (req, res) =>
 
 app.use("/api/auth", userRoutes);
 
-// Conference routes
+// List routes
 app.use("/api/conference", conferenceRoutes);
 app.use("/api/entretien", entretienRoutes);
-// Error handler middleware (doit être après les routes)
 app.use(errorHandler);
 
 // Démarrage du serveur
